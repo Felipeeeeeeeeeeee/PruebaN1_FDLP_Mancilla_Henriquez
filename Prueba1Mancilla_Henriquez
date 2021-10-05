@@ -1,0 +1,37 @@
+/* Integrantes => Felipe Mancilla, Simon Henriquez */
+#include <stdio.h>
+
+unsigned long long int fibonacci(int *$pos, unsigned long long int *$valor1, unsigned long long int *$valor2, unsigned long long int *$suma){
+    int iterador;
+    for (iterador = 1; iterador < *$pos; ++iterador){
+    *$suma=*$valor1+*$valor2;
+    *$valor1=*$valor2;
+    *$valor2=*$suma;
+    }
+    return *$suma;
+}
+
+void simulacion(int *$dias, unsigned long long int *$valor1, unsigned long long int *$valor2, unsigned long long int *$suma){
+    int i=1;
+    while(i <= *$dias){
+    *$valor1=0, *$valor2=1 , *$suma=1;
+        printf("Dia %i: %llu \n", i, fibonacci(&i, $valor1, $valor2, $suma));
+        i++;
+    }
+}
+
+int main(void){
+    unsigned long long int valor1, valor2, suma;
+    int dias = 0, condicion = 0;
+    printf("Ingrese la cantidad de dias (1 - 90) que quiere que dure la simulacion: \n");
+    while(condicion != 1){
+        scanf("%i",&dias);
+        if(dias<1 || dias>90)
+            printf("Cantidad de dias no disponible \n Intentelo denuevo \n");
+        else
+            ++condicion;
+    }    
+    simulacion(&dias,&valor1,&valor2,&suma);
+    printf("\nFIN DEL PROGRAMA\n");
+    return 0;
+}
